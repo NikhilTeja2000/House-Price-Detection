@@ -1,0 +1,284 @@
+{% block head %}
+<title>Phineas and Ferb - Adventures</title>
+<link href="https://fonts.googleapis.com/css2?family=Aladin&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@400;700&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #0C0E18;
+    color: #E0E1E8;
+    background-image: url('https://example.com/stars-background.png');
+    background-repeat: repeat;
+    background-attachment: fixed;
+}
+
+.header {
+    background: linear-gradient(135deg, #1A237E, #4A148C);
+    padding: 3rem;
+    text-align: center;
+    font-size: 3rem;
+    color: #ffffff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+    border-bottom: 5px solid #7B1FA2;
+    font-family: 'Lobster', cursive;
+}
+
+.taskbar {
+    background-color: #1A237E;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    border-bottom: 4px solid #7B1FA2;
+}
+
+.taskbar .nav-link {
+    color: #E0E1E8;
+    text-decoration: none;
+    padding: 0.5rem 1.5rem;
+    border: 2px solid #7B1FA2;
+    border-radius: 25px;
+    background-color: #0C0E18;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+.taskbar .nav-link:hover {
+    background-color: #4A148C;
+    transform: scale(1.1) rotate(-5deg);
+    box-shadow: 0px 4px 10px rgba(123, 31, 162, 0.5);
+}
+
+.requirements-form, .requirements-output {
+    background-color: rgba(12, 14, 24, 0.8);
+    border-radius: 20px;
+    border: 3px solid #7B1FA2;
+    box-shadow: 0 4px 10px rgba(123, 31, 162, 0.3);
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.requirements-form h2, .requirements-output h2 {
+    font-family: 'Lobster', cursive;
+    color: #9C27B0;
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.form-label {
+    color: #9C27B0;
+    font-weight: bold;
+}
+
+.form-control {
+    background-color: rgba(26, 35, 126, 0.3);
+    border: 2px solid #7B1FA2;
+    color: #E0E1E8;
+    transition: all 0.3s ease-in-out;
+}
+
+.form-control:focus {
+    background-color: rgba(26, 35, 126, 0.5);
+    border-color: #9C27B0;
+    box-shadow: 0 0 0 0.25rem rgba(156, 39, 176, 0.25);
+    color: #E0E1E8;
+}
+
+.btn-primary {
+    background-color: #7B1FA2;
+    border-color: #7B1FA2;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    background-color: #9C27B0;
+    border-color: #9C27B0;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(123, 31, 162, 0.5);
+}
+
+.cosmic-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.cosmic-list li {
+    background-color: rgba(26, 35, 126, 0.3);
+    border: 2px solid #7B1FA2;
+    border-radius: 15px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.cosmic-list li:hover {
+    transform: translateX(10px);
+    box-shadow: 0 4px 10px rgba(123, 31, 162, 0.5);
+}
+
+.cosmic-list li strong {
+    color: #9C27B0;
+    font-weight: bold;
+}
+
+.footer {
+    background-color: #1A237E;
+    color: #E0E1E8;
+    text-align: center;
+    padding: 1rem;
+    border-top: 4px solid #7B1FA2;
+    margin-top: 2rem;
+}
+
+.star {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    opacity: 0;
+    animation: twinkle 5s infinite;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@media (max-width: 768px) {
+    .header {
+        font-size: 2.5rem;
+        padding: 2rem;
+    }
+
+    .requirements-form h2, .requirements-output h2 {
+        font-size: 2rem;
+    }
+
+    .taskbar {
+        flex-wrap: wrap;
+    }
+
+    .taskbar .nav-link {
+        margin-bottom: 0.5rem;
+    }
+}
+
+
+</style>
+{% endblock %}
+
+{% block body %}
+<header class="header mb-4">
+    <h1>Prediction Time</h1>
+</header>
+
+<nav class="taskbar mb-4">
+    <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+    <a class="nav-link" href="{{ url_for('about') }}">About</a>
+    <a class="nav-link" href="{{ url_for('datanalysis') }}">Things to know</a>
+    <a class="nav-link" href="{{ url_for('adventures') }}">Calculate Price</a>
+    <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
+</nav>
+
+
+<main class="container">
+
+    <section class="requirements-form">
+        <h2>Enter Your House Requirements</h2>
+        <form id="requirementsForm" method="POST" action="/adventures">
+            <div class="mb-3">
+                <label for="requirement1" class="form-label">OverallQual</label>
+                <input type="text" class="form-control" id="requirement1" name="OverallQual" required>
+            </div>
+            <div class="mb-3">
+                <label for="requirement2" class="form-label">GrLivArea</label>
+                <input type="text" class="form-control" id="requirement2" name="GrLivArea" required>
+            </div>
+            <div class="mb-3">
+                <label for="requirement3" class="form-label">GarageCars</label>
+                <input type="text" class="form-control" id="requirement3" name="GarageCars" required>
+            </div>
+            <div class="mb-3">
+                <label for="requirement4" class="form-label">TotalSF</label>
+                <input type="text" class="form-control" id="requirement4" name="TotalSF" required>
+            </div>
+            <div class="mb-3">
+                <label for="requirement5" class="form-label">YearBuilt</label>
+                <input type="text" class="form-control" id="requirement5" name="YearBuilt" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Requirements</button>
+        </form>
+    </section>
+
+    <section class="requirements-output mt-5" id="outputSection" style="display: none;">
+        <h2>Its just as you thought... Just kidding</h2>
+        <div id="outputContent">
+            {% if prediction %}
+                <p><strong>Predicted Price:</strong> ${{ prediction }}</p>
+            {% endif %}
+        </div>
+    </section>
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.getElementById('requirementsForm').addEventListener('submit', async function (e) {
+    e.preventDefault(); // Prevent default form submission
+
+    const formData = new FormData(this);
+
+    try {
+        const response = await fetch(this.action, {
+            method: this.method,
+            body: formData,
+        });
+
+        if (response.ok) {
+            const result = await response.json(); // Parse JSON response
+            
+            // Check if prediction exists in the response
+            if (result && result.predicted_price) {
+                document.getElementById('outputContent').innerHTML = `
+                    <p><strong>Predicted Price:</strong> $${result.predicted_price}</p>
+                `;
+            } else {
+                document.getElementById('outputContent').innerHTML = `
+                    <p class="text-warning">Prediction is not available. Please verify your inputs.</p>
+                `;
+            }
+
+            document.getElementById('outputSection').style.display = 'block';
+        } else {
+            throw new Error('Failed to fetch prediction. Please try again.');
+        }
+    } catch (error) {
+        document.getElementById('outputContent').innerHTML = `
+            <p class="text-danger">Error: ${error.message}</p>
+        `;
+        document.getElementById('outputSection').style.display = 'block';
+    }
+});
+
+
+
+
+    function createStar() {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDuration = Math.random() * 3 + 2 + 's';
+        document.body.appendChild(star);
+        setTimeout(() => star.remove(), 5000);
+    }
+    setInterval(createStar, 300);
+</script>
+{% endblock %}
